@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lim Si Ying – Multimedia Designer</title>
+<meta name="description" content="Portfolio of Lim Si Ying, a creative multimedia designer working in healthcare marketing, posters, video, reels and AI design.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --paper: #fbfbfa;
+    --panel: #f0f0ee;
+    --ink: #1c1c1e;
+    --muted: #6b6b70;
+    --line: #dcdcd8;
+    --accent: #2f3fe0;
+    --display: "Jost", "Helvetica Neue", Arial, sans-serif;
+    --body: "DM Sans", "Helvetica Neue", Arial, sans-serif;
+    --gutter: clamp(20px, 5vw, 72px);
+  }
+  :root:not([data-theme="light"]) { color-scheme: light dark; }
+
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body {
+    background: var(--paper); color: var(--ink);
+    font: 400 1.0625rem/1.65 var(--body);
+    -webkit-font-smoothing: antialiased;
+  }
+  img, video { max-width: 100%; display: block; }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+  .wrap { padding-inline: var(--gutter); max-width: 1400px; margin-inline: auto; }
+  section { padding-block: clamp(72px, 12vw, 150px); }
+  h1, h2, h3 { font-family: var(--display); line-height: 1.05; letter-spacing: -0.02em; }
+  h2 { font-size: clamp(2rem, 4.5vw, 3.25rem); font-weight: 800; margin-bottom: 40px; }
+
+  /* Header */
+  header.site {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+  header.site .wrap { display: flex; justify-content: space-between; align-items: center; gap: 24px; min-height: 60px; }
+  .logo { font: 800 1.1rem var(--display); text-decoration: none; letter-spacing: -0.01em; }
+  nav { display: flex; gap: clamp(14px, 3vw, 32px); flex-wrap: wrap; justify-content: flex-end; font-size: 0.95rem; }
+  nav a { text-decoration: none; color: var(--muted); padding: 4px 0; }
+  nav a:hover { color: var(--ink); }
+
+  /* Hero */
+  .hero { padding-top: clamp(80px, 16vw, 200px); padding-bottom: clamp(60px, 9vw, 120px); }
+  .hero h1 { font-size: clamp(3.2rem, 11vw, 9.5rem); font-weight: 800; letter-spacing: -0.045em; line-height: 0.95; }
+  .hero p.intro { max-width: 34ch; margin-top: 36px; font-size: clamp(1.15rem, 2vw, 1.4rem); line-height: 1.5; }
+  .hero ul { list-style: none; padding: 0; margin-top: clamp(48px, 8vw, 96px); display: flex; flex-wrap: wrap; gap: 10px 28px; border-top: 1px solid var(--line); padding-top: 24px; }
+  .hero ul a { text-decoration: none; font: 600 1.05rem var(--display); }
+  .hero ul a:hover { color: var(--accent); }
+
+  /* Work */
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px; }
+  .filters button {
+    font: 500 0.95rem var(--body); color: var(--muted); background: none;
+    border: 1px solid var(--line); border-radius: 999px; padding: 7px 18px; cursor: pointer;
+  }
+  .filters button:hover { color: var(--ink); border-color: var(--ink); }
+  .filters button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+  .grid { columns: 3 280px; column-gap: 28px; }
+  .item { break-inside: avoid; margin-bottom: 40px; }
+  .item button { display: block; width: 100%; padding: 0; border: 0; background: none; text-align: left; cursor: pointer; color: inherit; font: inherit; }
+  .thumb { position: relative; width: 100%; background: var(--panel); overflow: hidden; border-radius: 4px; }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+  .item button:hover .thumb img { transform: scale(1.03); }
+  .thumb .ph { position: absolute; inset: 0; display: grid; place-items: center; color: var(--muted); font: 600 0.95rem var(--display); }
+  .thumb .play { position: absolute; right: 12px; bottom: 12px; width: 40px; height: 40px; border-radius: 50%; background: var(--paper); display: grid; place-items: center; }
+  .thumb .play::after { content: ""; border-left: 11px solid var(--ink); border-block: 7px solid transparent; margin-left: 3px; }
+  .meta { display: flex; justify-content: space-between; gap: 12px; padding-top: 12px; }
+  .meta h3 { font-size: 1.05rem; font-weight: 600; letter-spacing: -0.01em; line-height: 1.3; }
+  .meta span { color: var(--muted); font-size: 0.9rem; white-space: nowrap; }
+
+  /* About */
+  .two { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 7vw, 120px); align-items: start; }
+  .portrait { aspect-ratio: 4/5; background: var(--panel); border-radius: 4px; overflow: hidden; display: grid; place-items: center; color: var(--muted); font: 600 0.95rem var(--display); }
+  .portrait img { width: 100%; height: 100%; object-fit: cover; }
+  .prose p { max-width: 58ch; }
+  .prose p + p { margin-top: 1.2em; }
+  .prose .lead { font: 600 clamp(1.4rem, 2.6vw, 1.9rem)/1.3 var(--display); letter-spacing: -0.015em; max-width: 28ch; margin-bottom: 1.2em; }
+  .alt { background: var(--panel); }
+
+  /* Education timeline (an actual sequence) */
+  .timeline { list-style: none; padding: 0; border-left: 1px solid var(--line); margin-left: 6px; }
+  .timeline li { position: relative; padding: 0 0 40px 32px; }
+  .timeline li:last-child { padding-bottom: 0; }
+  .timeline li::before { content: ""; position: absolute; left: -6px; top: 10px; width: 11px; height: 11px; border-radius: 50%; background: var(--accent); }
+  .timeline .when { color: var(--muted); font-size: 0.92rem; }
+  .timeline h3 { font-size: 1.3rem; font-weight: 600; margin: 2px 0 4px; }
+
+  .timeline ul { padding-left: 1.1em; margin-top: 8px; color: var(--muted); font-size: 0.97rem; max-width: 62ch; }
+  .timeline ul li { position: static; padding: 2px 0; }
+  .timeline ul li::before { content: none; }
+  .timeline .org { color: var(--muted); }
+  .awards { margin-top: 56px; }
+  .awards h3.sub { font-size: 1.15rem; font-weight: 600; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+  .awards dl { margin: 0; }
+  .awards dt { font-weight: 600; margin-top: 18px; }
+  .awards dd { margin: 2px 0 0; color: var(--muted); max-width: 62ch; }
+
+  /* Skills */
+  .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 40px 48px; }
+  .skills h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+  .skills ul { list-style: none; padding: 0; }
+  .skills li { padding: 5px 0; }
+
+  /* Contact */
+  .contact h2 { font-size: clamp(2.4rem, 7vw, 5.5rem); letter-spacing: -0.035em; margin-bottom: 28px; }
+  .contact .mail { font: 600 clamp(1.2rem, 3vw, 2rem) var(--display); text-decoration-thickness: 2px; text-underline-offset: 6px; }
+  .contact .mail:hover { color: var(--accent); }
+  .links { list-style: none; padding: 0; margin-top: 40px; display: flex; flex-wrap: wrap; gap: 10px 28px; }
+  .links a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+  .links a:hover { color: var(--ink); border-color: var(--ink); }
+  footer { border-top: 1px solid var(--line); padding-block: 28px calc(28px + env(safe-area-inset-bottom, 0px)); color: var(--muted); font-size: 0.9rem; }
+
+  .lb-gallery { display: grid; gap: 14px; }
+  .lb-gallery img { width: 100%; height: auto; border-radius: 4px; background: var(--panel); }
+  .lb-links { display: flex; flex-wrap: wrap; gap: 10px; }
+  .lb-links a { text-decoration: none; border: 1px solid var(--ink); border-radius: 999px; padding: 7px 18px; font-weight: 500; }
+  .lb-links a:hover { background: var(--ink); color: var(--paper); }
+  .portrait img { object-position: center top; }
+
+  /* Lightbox */
+  dialog { border: 0; padding: 0; background: var(--paper); color: var(--ink); width: min(1000px, 94vw); max-height: 94vh; border-radius: 6px; overflow: auto; }
+  dialog::backdrop { background: rgba(10,10,12,.72); }
+  .lb-body { padding: 20px; display: grid; gap: 18px; }
+  .lb-media { display: grid; place-items: center; background: var(--panel); border-radius: 4px; overflow: hidden; }
+  .lb-media img, .lb-media video { max-height: 72vh; width: auto; max-width: 100%; object-fit: contain; }
+  .lb-media iframe { width: 100%; border: 0; max-height: 72vh; }
+  .lb-head { display: flex; justify-content: space-between; align-items: start; gap: 16px; }
+  .lb-head h3 { font-size: 1.5rem; font-weight: 600; }
+  .lb-cat { color: var(--muted); font-size: 0.92rem; }
+  .lb-close { font: 500 0.95rem var(--body); background: none; border: 1px solid var(--line); border-radius: 999px; padding: 6px 16px; cursor: pointer; color: var(--ink); flex-shrink: 0; }
+  .lb-close:hover { border-color: var(--ink); }
+  .lb-desc { max-width: 62ch; color: var(--muted); }
+
+  @media (max-width: 760px) {
+    .two { grid-template-columns: 1fr; }
+    .portrait { max-width: 320px; }
+    header.site .wrap { flex-direction: column; align-items: flex-start; gap: 2px; padding-block: 10px; }
+    nav { justify-content: flex-start; gap: 6px 13px; font-size: 0.86rem; }
+    html { scroll-padding-top: 120px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .thumb img { transition: none; }
+  }
+</style>
+<style>
+  /* Dreamy paper-and-sky look, matching the Canva portfolio */
+  :root { --paper:#ebe7dd; --panel:rgba(255,255,255,.55); --ink:#34343a; --muted:#5f5f68; --line:#c4bfb0; --accent:#4a63b8; }
+  html { color-scheme: light; }
+  body { background: var(--paper) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 .3 0 0 0 0 .28 0 0 0 0 .24 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E"); font-weight: 400; }
+  body::before { content:""; position:fixed; inset:0; z-index:-1; pointer-events:none;
+    background: radial-gradient(60vw 45vh at 100% 12%, rgba(143,163,230,.55), transparent 70%),
+                radial-gradient(45vw 40vh at 88% 52%, rgba(245,222,150,.55), transparent 70%),
+                radial-gradient(40vw 40vh at 0% 80%, rgba(170,190,235,.3), transparent 70%); }
+  h1, h2, h3 { font-weight: 400; letter-spacing: 0; }
+  h2 { font-weight: 400; font-size: clamp(2.2rem, 5vw, 3.6rem); }
+  h2::after { content:""; display:block; width:56px; border-top:1px solid var(--ink); margin-top:16px; }
+  .contact h2::after { margin-top: 20px; }
+  header.site { background: rgba(235,231,221,.82); border-bottom: 4px double var(--ink); }
+  .logo { font-weight: 500; }
+  .hero { position:relative; padding-bottom: clamp(60px, 9vw, 120px); }
+  .hero h1 { font-weight: 300; letter-spacing: -0.02em; }
+  .hero::before { content:""; position:absolute; inset:0; pointer-events:none;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 0C13 8 16 11 24 12 16 13 13 16 12 24 11 16 8 13 0 12 8 11 11 8 12 0Z' fill='%2334343a'/%3E%3C/svg%3E") 78% 14%/34px no-repeat, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 0C13 8 16 11 24 12 16 13 13 16 12 24 11 16 8 13 0 12 8 11 11 8 12 0Z' fill='%2334343a'/%3E%3C/svg%3E") 86% 24%/18px no-repeat, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 0C13 8 16 11 24 12 16 13 13 16 12 24 11 16 8 13 0 12 8 11 11 8 12 0Z' fill='%2334343a'/%3E%3C/svg%3E") 8% 38%/16px no-repeat; }
+  .hero p.intro { background: var(--panel); border: 1px solid var(--ink); border-radius: 6px; padding: 16px 22px; backdrop-filter: blur(6px); }
+  .hero ul { border-top: 0; padding-top: 0; }
+  .hero ul a { background: var(--panel); border: 1px solid var(--line); border-radius: 999px; padding: 6px 18px; font-weight: 400; }
+  .contact { position: relative; padding-bottom: clamp(72px, 12vw, 150px); }
+  .alt { background: rgba(255,255,255,.4); backdrop-filter: blur(4px); border-block: 1px solid var(--line); }
+  .filters button { background: var(--panel); border-color: var(--line); }
+  .filters button[aria-pressed="true"] { background: var(--ink); }
+  .thumb { border-radius: 14px; border: 1px solid rgba(255,255,255,.8); box-shadow: 0 14px 28px -18px rgba(52,52,58,.6); }
+  .portrait { border-radius: 50% / 46%; border: 1px solid var(--ink); outline: 1px solid var(--ink); outline-offset: 8px; margin: 9px; }
+  .timeline { border-left-color: var(--ink); }
+  .timeline li::before { background: #e0a04b; box-shadow: 0 0 0 3px var(--paper); }
+  .skills > div { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 22px 24px; }
+  .skills h3 { font-weight: 500; }
+  dialog { border-radius: 14px; }
+  footer { background: #e8c24a33; }
+</style>
+</head>
+
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="logo" href="#top">Lim Si Ying</a>
+    <nav aria-label="Main">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="wrap">
+      <h1>Lim Si Ying</h1>
+      <p class="intro">Creative multimedia designer making healthcare awareness posters, video and social content that people understand at a glance.</p>
+      <ul id="heroIndex" aria-label="Jump to a category"></ul>
+    </div>
+  </section>
+
+  <!-- ============ WORK ============ -->
+  <section id="work" style="padding-top:0">
+    <div class="wrap">
+      <h2>Selected work</h2>
+      <div class="filters" id="filters" role="group" aria-label="Filter projects"></div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about" class="alt">
+    <div class="wrap two">
+      <div class="portrait"><img src="images/me.jpg" alt="Portrait of Lim Si Ying"></div>
+      <div class="prose">
+        <h2>About</h2>
+        <p class="lead">I turn complex ideas into clear, memorable visuals.</p>
+        <p>I'm a Creative Multimedia graduate with hands-on experience in healthcare marketing, graphic design, social media content and multimedia production. At UMediC Healthcare, I designed more than 70 healthcare awareness posters and promotional materials, and produced video and social content for Facebook and Instagram.</p>
+        <p>I'm passionate about engaging visual content that supports healthcare awareness campaigns, and I also explore AI tools as part of my creative process. I work comfortably across the Adobe Creative Suite, video editing, branding and digital marketing, and I enjoy collaborating with teams.</p>
+        <p><a href="files/LIM_SI_YING_Resume.pdf" download>Download my résumé (PDF)</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXPERIENCE ============ -->
+  <section id="experience">
+    <div class="wrap two">
+      <h2>Experience</h2>
+      <ol class="timeline">
+        <li>
+          <div class="when">Mar 2026 – Present</div>
+          <h3>Marketing Executive</h3>
+          <div class="org">UMediC Healthcare Sdn. Bhd.</div>
+          <ul>
+            <li>Designed 70+ healthcare awareness posters and promotional materials.</li>
+            <li>Produced marketing videos and social media content for Facebook and Instagram.</li>
+            <li>Assisted in planning and preparing healthcare workshops and events.</li>
+            <li>Managed digital marketing content and promotional campaigns.</li>
+          </ul>
+        </li>
+        <li>
+          <div class="when">Nov 2025 – Mar 2026</div>
+          <h3>Multimedia Designer (Degree Internship)</h3>
+          <div class="org">UMediC Healthcare Sdn. Bhd.</div>
+        </li>
+        <li>
+          <div class="when">Oct 2025 – Nov 2025</div>
+          <h3>Native Mandarin Audio Transcriber (Simplified Chinese)</h3>
+          <div class="org">Open Train Admin</div>
+        </li>
+        <li>
+          <div class="when">Sep 2023 – Jul 2025</div>
+          <h3>Kindergarten, Daycare and Tuition Teacher</h3>
+          <div class="org">Natural Learning Centre</div>
+          <ul>
+            <li>Developed educational materials, learning flashcards and classroom visual aids.</li>
+            <li>Organized school events and designed promotional materials.</li>
+          </ul>
+        </li>
+        <li>
+          <div class="when">Jan 2023 – Mar 2023</div>
+          <h3>Graphic Designer (Diploma Internship)</h3>
+          <div class="org">Impian Binawah Enterprise</div>
+          <ul>
+            <li>Designed a company notebook, a creative banner, stamps, a flyer and a product voucher for small-business clients.</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ EDUCATION ============ -->
+  <section id="education" class="alt">
+    <div class="wrap two">
+      <h2>Education</h2>
+      <div>
+        <ol class="timeline">
+          <li>
+            <div class="when">2024 – 2026</div>
+            <h3>Bachelor of Arts (Honours) in Creative Multimedia</h3>
+            <div class="org">Han Chiang University College of Communication</div>
+          </li>
+          <li>
+            <div class="when">2021 – 2023</div>
+            <h3>Diploma in Multimedia Communication Design</h3>
+            <div class="org">Han Chiang University College of Communication</div>
+          </li>
+          <li>
+            <div class="when">2016 – 2020</div>
+            <h3>SMK Taman Perwira</h3>
+            <div class="org">Secondary school</div>
+          </li>
+        </ol>
+
+        <div class="awards">
+          <h3 class="sub">Awards and achievements</h3>
+          <dl>
+            <dt>Dean's List, Bachelor of Arts (Honours) in Creative Multimedia</dt>
+            <dd>Han Chiang University College of Communication, Nov 2024 – Mar 2025</dd>
+            <dt>Third Place and Best Debater</dt>
+            <dd>The 15th Chinese Language Debate Competition between Secondary Schools in Seberang Perai Zone, organized by Hokkien Hoay Kuan Seberang Perai Youth Association, April 2019</dd>
+            <dt>Third Place</dt>
+            <dd>Penang State Level Middle School Chinese Parliamentary Debate Competition, Malaysia Education Ministry, April 2019</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SKILLS ============ -->
+  <section id="skills">
+    <div class="wrap">
+      <h2>Skills and software</h2>
+      <div class="skills">
+        <div>
+          <h3>Design</h3>
+          <ul><li>Adobe Photoshop</li><li>Adobe Illustrator</li><li>Adobe InDesign</li><li>Graphic design</li><li>Branding</li><li>Photography</li></ul>
+        </div>
+        <div>
+          <h3>Video and motion</h3>
+          <ul><li>Adobe Premiere Pro</li><li>Adobe After Effects</li><li>Adobe Animate</li><li>CapCut</li><li>OBS Studio</li><li>Motion graphics</li></ul>
+        </div>
+        <div>
+          <h3>3D</h3>
+          <ul><li>Blender</li><li>Maya</li></ul>
+        </div>
+        <div>
+          <h3>AI tools</h3>
+          <ul><li>ChatGPT</li><li>Gemini</li><li>Claude</li><li>Google Flow</li></ul>
+        </div>
+        <div>
+          <h3>Office</h3>
+          <ul><li>Word</li><li>PowerPoint</li><li>Excel</li></ul>
+        </div>
+        <div>
+          <h3>Marketing and content</h3>
+          <ul><li>Social media marketing</li><li>Content creation</li><li>Digital marketing</li><li>Event coordination</li></ul>
+        </div>
+        <div>
+          <h3>Languages</h3>
+          <ul><li>English</li><li>Malay</li><li>Chinese</li><li>Cantonese</li><li>Hokkien</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact" class="contact alt">
+    <div class="wrap">
+      <h2>Let's work together</h2>
+      <a class="mail" href="mailto:siying1029@gmail.com">siying1029@gmail.com</a>
+      <p style="margin-top:14px;color:var(--muted)">Based in Bukit Mertajam, Penang, Malaysia</p>
+      <ul class="links">
+        <li><a href="https://www.behance.net/25a1d2e3" target="_blank" rel="noopener">Behance</a></li>
+        <li><a href="https://www.linkedin.com/in/siying1029/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://www.instagram.com/umc.learning.centre/" target="_blank" rel="noopener">Instagram (UMC Learning Centre)</a></li>
+        <li><a href="https://www.facebook.com/UMCLearningCentre" target="_blank" rel="noopener">Facebook (UMC Learning Centre)</a></li>
+        <li><a href="https://canva.link/aoowzi1i8cnnnq6" target="_blank" rel="noopener">Canva portfolio</a></li>
+        <li><a href="files/LIM_SI_YING_Resume.pdf" download>Résumé (PDF)</a></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap"><span id="year"></span> Lim Si Ying. All work shown is my own unless stated.</div>
+</footer>
+
+<!-- Project viewer -->
+<dialog id="viewer" aria-labelledby="lbTitle">
+  <div class="lb-body">
+    <div class="lb-head">
+      <div><h3 id="lbTitle"></h3><div class="lb-cat" id="lbCat"></div></div>
+      <button class="lb-close" id="lbClose" type="button">Close</button>
+    </div>
+    <div class="lb-media" id="lbMedia"></div>
+    <p class="lb-desc" id="lbDesc"></p>
+    <div id="lbExtra" style="display:grid;gap:18px"></div>
+  </div>
+</dialog>
+
+<script>
+/* =====================================================================
+   HOW TO UPDATE YOUR WORK  (the only part you need to edit regularly)
+
+   1. Put your image in the "images" folder (e.g. images/poster-01.jpg).
+      Tip: export as JPG or WebP, around 1600 px on the long side, under 500 KB.
+   2. Add a new { ... } block to the PROJECTS list below. Newest first.
+        title        name of the project
+        category     must match one of the CATEGORIES below
+        image        path to the cover image. Leave "" to show a grey placeholder
+        ratio        shape of the thumbnail: "3/4" poster, "16/9" video,
+                     "9/16" reels, "1/1" square, "4/5" portrait
+        description  one or two sentences about the idea and your role
+        gallery      (optional) more images shown under the main one:
+                     gallery: ["images/a.jpg", "images/b.jpg"]
+        links        (optional) buttons to other pages:
+                     links: [ { label: "Instagram", url: "https://..." } ]
+        video        (optional) a YouTube/Vimeo EMBED link, or a file like
+                     "videos/reel-01.mp4". If set, it plays when clicked.
+                     YouTube embed format: https://www.youtube.com/embed/VIDEO_ID
+   3. Save, then upload the changed files to GitHub.
+   ===================================================================== */
+
+const CATEGORIES = ["Healthcare", "Poster", "Video", "Reels", "Photography", "3D", "Exhibition", "AI design"];
+/* A category button only appears once at least one project uses it. */
+
+const PROJECTS = [
+  { title: "Healthcare social media content", category: "Healthcare", image: "", ratio: "4/5",
+    description: "Posters and videos I designed and produced for UMediC Healthcare, posted on the UMC Learning Centre Facebook and Instagram accounts. Open the pages below to see the latest posts.",
+    links: [ { label: "Instagram", url: "https://www.instagram.com/umc.learning.centre/" }, { label: "Facebook", url: "https://www.facebook.com/UMCLearningCentre" } ] },
+
+  { title: "Girls Not Brides: infographic poster", category: "Poster", image: "images/gnb-poster.jpg", ratio: "1985/1404",
+    description: "Final year project on child marriage awareness. An infographic poster explaining the issue, the global scale and what people can do." },
+  { title: "Girls Not Brides: bookmarks and stickers", category: "Poster", image: "images/gnb-stickers.jpg", ratio: "1985/1404",
+    description: "Bookmarks and stickers created to spread the Girls Not Brides message at the exhibition." },
+  { title: "Sichuan Opera face changing brochure", category: "Poster", image: "images/brochure-sichuan-mockup.jpg", ratio: "4/3",
+    description: "A brochure introducing a traditional Sichuan culture, Sichuan Opera face changing.",
+    gallery: ["images/brochure-sichuan-flat.jpg"] },
+  { title: "Beef burger infographic poster", category: "Poster", image: "images/poster-beef-burger.jpg", ratio: "1053/1489",
+    description: "An infographic poster showing detailed information about the beef burger." },
+  { title: "Microplastic awareness poster", category: "Poster", image: "images/poster-microplastic.jpg", ratio: "1053/1489",
+    description: "A graphic poster that brings out awareness of microplastic." },
+
+  { title: "TV magazine: Casuarina Inn", category: "Video", image: "images/video-casuarina.jpg", ratio: "16/9",
+    description: "Drove to Taiping to shoot, interviewed the locals and filmed the whole building of Casuarina Inn, day and night. Role: host, videographer and editor.",
+    video: "https://www.youtube.com/embed/k8anAK4T7mU" },
+  { title: "Music video: video remix", category: "Video", image: "images/video-remix.jpg", ratio: "16/9",
+    description: "Chose scenes from two videos, remixed them and added new background music, sound effects and voice over. Role: editor.",
+    video: "https://www.youtube.com/embed/YRYTyrWtC0Q" },
+  { title: "Drama: Exorcised", category: "Video", image: "images/video-exorcised.jpg", ratio: "16/9",
+    description: "Shot from a different perspective, using funny accents and local lifestyle to bring out the storyline. Role: actor, videographer and editor.",
+    video: "" /* add the YouTube embed link here: https://www.youtube.com/embed/VIDEO_ID */ },
+  { title: "Music video: re-enactment", category: "Video", image: "images/video-reenactment.jpg", ratio: "16/9",
+    description: "A reinterpretation of a patriotic music video. Role: editor.",
+    video: "https://www.youtube.com/embed/-a5Own9c2-4" },
+
+  { title: "Black and white street photography", category: "Photography", image: "images/street-bw-1.jpg", ratio: "3/2",
+    description: "Capturing the everyday reality of Jalan Lim Lean Teng in black and white.",
+    gallery: ["images/street-bw-2.jpg", "images/street-bw-3.jpg"] },
+  { title: "Product and portrait photography", category: "Photography", image: "images/photo-portrait-1.jpg", ratio: "810/1210",
+    description: "Capturing the model and the product.",
+    gallery: ["images/photo-portrait-2.jpg", "images/photo-product.jpg"] },
+
+  { title: "3D modelling: Chinese tradition", category: "3D", image: "images/3d-house.jpg", ratio: "16/9",
+    description: "A building and a character created in 3D, inspired by Chinese traditions.",
+    gallery: ["images/3d-scene.jpg", "images/3d-character-1.jpg", "images/3d-character-2.jpg"] },
+
+  { title: "Girls Not Brides: exhibition booth", category: "Exhibition", image: "images/gnb-booth-1.jpg", ratio: "1224/922",
+    description: "Booth setup and moments from the final year project exhibition.",
+    gallery: ["images/gnb-booth-2.jpg", "images/gnb-photo-1.jpg", "images/gnb-photo-2.jpg"] }
+];
+
+/* ---------- Everything below runs the page. No need to edit. ---------- */
+const grid = document.getElementById("grid");
+const filters = document.getElementById("filters");
+const heroIndex = document.getElementById("heroIndex");
+const viewer = document.getElementById("viewer");
+let active = "All";
+
+function el(tag, props = {}, children = []) {
+  const n = document.createElement(tag);
+  Object.assign(n, props);
+  children.forEach(c => n.append(c));
+  return n;
+}
+
+const usedCategories = () => CATEGORIES.filter(c => PROJECTS.some(p => p.category === c));
+
+function renderFilters() {
+  filters.replaceChildren();
+  ["All", ...usedCategories()].forEach(name => {
+    const b = el("button", { type: "button", textContent: name });
+    b.setAttribute("aria-pressed", String(name === active));
+    b.addEventListener("click", () => { active = name; renderFilters(); renderGrid(); });
+    filters.append(b);
+  });
+}
+
+function renderHeroIndex() {
+  usedCategories().forEach(name => {
+    const a = el("a", { href: "#work", textContent: name });
+    a.addEventListener("click", () => { active = name; renderFilters(); renderGrid(); });
+    heroIndex.append(el("li", {}, [a]));
+  });
+}
+
+function renderGrid() {
+  grid.replaceChildren();
+  PROJECTS.filter(p => active === "All" || p.category === active).forEach(p => {
+    const thumb = el("div", { className: "thumb" });
+    thumb.style.aspectRatio = p.ratio || "4/5";
+    if (p.image) {
+      thumb.append(el("img", { src: p.image, alt: p.title + " – " + p.category, loading: "lazy" }));
+    } else {
+      thumb.append(el("div", { className: "ph", textContent: p.category }));
+    }
+    if (p.video) thumb.append(el("span", { className: "play" }));
+
+    const meta = el("div", { className: "meta" }, [
+      el("h3", { textContent: p.title }),
+      el("span", { textContent: p.category })
+    ]);
+    const btn = el("button", { type: "button" }, [thumb, meta]);
+    btn.setAttribute("aria-label", "Open " + p.title);
+    btn.addEventListener("click", () => openViewer(p));
+    grid.append(el("div", { className: "item" }, [btn]));
+  });
+}
+
+function openViewer(p) {
+  document.getElementById("lbTitle").textContent = p.title;
+  document.getElementById("lbCat").textContent = p.category;
+  document.getElementById("lbDesc").textContent = p.description || "";
+  const media = document.getElementById("lbMedia");
+  media.replaceChildren();
+  if (p.video && /\.(mp4|webm)$/i.test(p.video)) {
+    media.append(el("video", { src: p.video, controls: true, autoplay: true, playsInline: true }));
+  } else if (p.video) {
+    const f = el("iframe", { src: p.video, title: p.title, allowFullscreen: true });
+    f.allow = "accelerometer; autoplay; encrypted-media; picture-in-picture";
+    f.style.aspectRatio = p.ratio || "16/9";
+    f.style.maxWidth = (p.ratio === "9/16") ? "min(100%, 360px)" : "100%";
+    media.append(f);
+  } else if (p.image) {
+    media.append(el("img", { src: p.image, alt: p.title }));
+  } else {
+    const ph = el("div", { textContent: "Add an image for this project" });
+    ph.style.cssText = "padding:80px 20px;color:var(--muted)";
+    media.append(ph);
+  }
+  const extra = document.getElementById("lbExtra");
+  extra.replaceChildren();
+  if (p.gallery && p.gallery.length) {
+    const g = el("div", { className: "lb-gallery" });
+    p.gallery.forEach(src => g.append(el("img", { src, alt: p.title, loading: "lazy" })));
+    extra.append(g);
+  }
+  if (p.links && p.links.length) {
+    const l = el("div", { className: "lb-links" });
+    p.links.forEach(x => l.append(el("a", { href: x.url, target: "_blank", rel: "noopener", textContent: x.label })));
+    extra.append(l);
+  }
+  viewer.showModal();
+}
+
+function closeViewer() {
+  viewer.close();
+  document.getElementById("lbMedia").replaceChildren(); /* stops any playing video */
+}
+document.getElementById("lbClose").addEventListener("click", closeViewer);
+viewer.addEventListener("click", e => { if (e.target === viewer) closeViewer(); });
+viewer.addEventListener("cancel", () => document.getElementById("lbMedia").replaceChildren());
+
+document.getElementById("year").textContent = "© " + new Date().getFullYear();
+renderHeroIndex();
+renderFilters();
+renderGrid();
+</script>
+</body>
+</html>
