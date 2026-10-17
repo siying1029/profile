@@ -193,6 +193,17 @@
   dialog { border-radius: 14px; }
   footer { background: #e8c24a33; }
 </style>
+<style>
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) clamp(190px, 25vw, 340px); gap: clamp(32px, 6vw, 96px); align-items: center; }
+  .hero h1 { font-size: clamp(3rem, 8vw, 7.5rem); }
+  .hero-photo { margin: 9px; }
+  #about .two { grid-template-columns: minmax(0, 1fr); }
+  @media (max-width: 760px) {
+    .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+    .hero-photo { order: -1; width: 170px; }
+    .hero h1 { font-size: clamp(2.8rem, 14vw, 4rem); }
+  }
+</style>
 </head>
 
 <body>
@@ -215,10 +226,13 @@
 
   <!-- ============ HERO ============ -->
   <section class="hero">
-    <div class="wrap">
-      <h1>Lim Si Ying</h1>
-      <p class="intro">Creative multimedia designer making healthcare awareness posters, video and social content that people understand at a glance.</p>
-      <ul id="heroIndex" aria-label="Jump to a category"></ul>
+    <div class="wrap hero-grid">
+      <div class="hero-text">
+        <h1>Lim Si Ying</h1>
+        <p class="intro">Creative multimedia designer making healthcare awareness posters, video and social content that people understand at a glance.</p>
+        <ul id="heroIndex" aria-label="Jump to a category"></ul>
+      </div>
+      <div class="portrait hero-photo"><img src="images/me.jpg" alt="Portrait of Lim Si Ying"></div>
     </div>
   </section>
 
@@ -234,7 +248,6 @@
   <!-- ============ ABOUT ============ -->
   <section id="about" class="alt">
     <div class="wrap two">
-      <div class="portrait"><img src="images/me.jpg" alt="Portrait of Lim Si Ying"></div>
       <div class="prose">
         <h2>About</h2>
         <p class="lead">I turn complex ideas into clear, memorable visuals.</p>
